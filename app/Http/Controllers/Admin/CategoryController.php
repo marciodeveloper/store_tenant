@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class CategoryController extends Controller
 {
     public function __construct(private Category $category)
     {

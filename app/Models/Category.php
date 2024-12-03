@@ -13,6 +13,12 @@ class Category extends Model
 
     protected $fillable = ['name', 'description'];
 
+    public function setNameAttribute($prop)
+    {
+        $this->attributes['name'] = $prop;
+        $this->attributes['slug'] = \Illuminate\Support\Str::slug($prop);
+    }
+
     public function store()
     {
         return $this->belongsTo(Store::class);

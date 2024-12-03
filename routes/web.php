@@ -4,17 +4,17 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    dump(\App\Models\Store::where('tenant_id', session()->get('tenant'))->first());
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    dump(\App\Models\Product::first());
-    
+Route::get('/dashboard', function () {    
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
 });
 
 Route::middleware('auth')->group(function () {

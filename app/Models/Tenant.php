@@ -9,4 +9,9 @@ class Tenant extends Model
 {
     /** @use HasFactory<\Database\Factories\TenantFactory> */
     use HasFactory;
+
+    public function stores()
+    {
+        return $this->hasMany(Store::class);
+    }
 }
