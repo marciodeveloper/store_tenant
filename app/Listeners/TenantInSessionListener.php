@@ -23,6 +23,6 @@ class TenantInSessionListener
      */
     public function handle($event)
     {
-        session()->put('tenant', auth()->user()->tenant_id);
+        session()->put('tenant', $event->user->tenant_id);
     }
 }
