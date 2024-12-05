@@ -3,6 +3,12 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Sobudomain Routes Stores
+Route::domain('{subdomain}.localhost')->group(function(){
+    Route::get('/', [\App\Http\Controllers\Front\StoreController::class, 'index'])
+            ->name('front.store');
+});
+
 Route::get('/', function () {
     dump(\App\Models\Store::where('tenant_id', session()->get('tenant'))->first());
     return view('welcome');

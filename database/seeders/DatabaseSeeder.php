@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Tenant::factory(10)
         //     ->hasStores(1)
         //     ->create();
+        // \App\Models\Store::withoutGlobalScope(\App\Scopes\TenantScope::class)->get() as $store
 
-        foreach(\App\Models\Store::withoutGlobalScope(\App\Scopes\TenantScope::class)->get() as $store) {
+        foreach(\App\Models\Store::all() as $store) {
 
             $tenantAndStoreIds = ['store_id' => $store->id, 'tenant_id' => $store->tenant_id];
 
