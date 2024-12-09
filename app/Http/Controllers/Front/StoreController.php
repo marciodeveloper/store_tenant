@@ -8,9 +8,12 @@ use App\Models\Store;
 
 class StoreController extends Controller
 {
-    public function index($subdomain)
+    public function index($subdomain, Store $store)
     {
-        dd(Store::withoutGlobalScope(\App\Scopes\TenantScope::class)
-        ->whereSubdomain($subdomain)->first());
+        $store = $store->whereSubdomain($subdomain)
+                        ->with('products')
+                        ->first();
+
+        return view('front.home', compact('store'));
     }
 }
