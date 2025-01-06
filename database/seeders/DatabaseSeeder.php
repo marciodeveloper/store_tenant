@@ -15,10 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // \App\Models\Tenant::factory(10)
-        //     ->hasStores(1)
-        //     ->create();
-        // \App\Models\Store::withoutGlobalScope(\App\Scopes\TenantScope::class)->get() as $store
+        \App\Models\Tenant::factory(10)
+            ->hasStores(1)
+            ->create();
 
         foreach(\App\Models\Store::all() as $store) {
 
