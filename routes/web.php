@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Route;
 Route::domain('{subdomain}.localhost')->group(function(){
     Route::get('/', [\App\Http\Controllers\Front\StoreController::class, 'index'])
             ->name('front.store');
+
+    Route::prefix('cart')->name('cart.')->group(function(){
+        Route::get('/', [\App\Http\Controllers\Front\CartController::class, 'index'])->name('index');
+        Route::get('add/{product}', [\App\Http\Controllers\Front\CartController::class, 'add'])->name('add');
+        Route::get('remove/{product}', [\App\Http\Controllers\Front\CartController::class, 'remove'])->name('remove');
+        Route::get('cancel', [\App\Http\Controllers\Front\CartController::class, 'cancel'])->name('cancel');
+    });
 });
 
 Route::get('/', function () {
