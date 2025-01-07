@@ -14,6 +14,12 @@ Route::domain('{subdomain}.localhost')->group(function(){
         Route::get('remove/{product}', [\App\Http\Controllers\Front\CartController::class, 'remove'])->name('remove');
         Route::get('cancel', [\App\Http\Controllers\Front\CartController::class, 'cancel'])->name('cancel');
     });
+
+    Route::prefix('checkout')/*>middleware('auth.store')*/->name('checkout.')->group(function(){
+        Route::get('/', [\App\Http\Controllers\Front\CheckoutController::class, 'checkout'])->name('checkout');
+        Route::post('/proccess', [\App\Http\Controllers\Front\CheckoutController::class, 'proccess'])->name('proccess');
+        Route::get('/thanks', [\App\Http\Controllers\Front\CheckoutController::class, 'thanks'])->name('thanks');
+    });
 });
 
 Route::get('/', function () {
